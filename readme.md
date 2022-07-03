@@ -42,6 +42,12 @@ Enter the directory:
 cd wiki-actor
 ```
 
+Here you should again run:
+
+```shell
+poetry install
+```
+
 After preparing articles and revising `config.json` run
 
 ```
@@ -51,3 +57,5 @@ python3 generate.py
 to turn articles into static htmls.
 
 Then go back to `actor` directory and run `main.py` or use `uvicorn` cli.
+
+Also, you can add `logo.svg` to your static folder to show logo in the top left corner.

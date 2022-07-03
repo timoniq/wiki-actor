@@ -1,17 +1,13 @@
 {
-  "name": "Laurelang",
+  "name": "Wiki-actor",
   "links": {
     "Repository": {
       "alt": "Go to main repository",
-      "href": "https://github.com/timoniq/laurelang"
+      "href": "https://github.com/timoniq/wiki-actor"
     },
     "Contact": {
-      "alt": "Send email to laurelang maintainer",
+      "alt": "Send email to wiki-actor maintainer",
       "href": "mailto:timoniq@laurelang.org"
-    },
-    "Telegram": {
-      "alt": "Join telegram channel to receive updates",
-      "href": "https://t.me/laurelang_clg"
     }
   },
   "author": "Arseny Kriuchkov"
