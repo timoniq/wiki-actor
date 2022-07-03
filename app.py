@@ -77,7 +77,7 @@ class Handler(AutoHandler):
             if all([w.lower() in text.lower() for w in search.split()]):
                 found_articles.append((re.sub(SUBARTICLE, "", a), text.split("\n")[0]))
 
-        return gen_search_response(self.factory, search, found_articles, mobile)
+        return gen_search_response(self.factory, search, found_articles, self.config, mobile)
 
     async def undefined(self, path: str, headers: dict) -> ABCResponse:
         return self.factory.form("redirect.html", {"url": "/"})

@@ -53,6 +53,7 @@ def gen_search_response(
     factory: HTMLResponseFactory,
     search: str,
     found_articles: typing.List[typing.Tuple[str, str]],
+    config: dict,
     mobile: bool = False,
 ) -> HTMLResponse:
     return factory.form(
@@ -77,5 +78,6 @@ def gen_search_response(
                 ),
             },
             mobile=mobile,
+            config=config
         ),
     )
