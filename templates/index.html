@@ -1,0 +1,540 @@
+<html lang="en">
+
+<script>
+    let title = "{{article.title}}";
+
+    function redirect (url) {
+        let link = document.createElement('a');
+        link.href = url;
+        document.body.appendChild(link);
+        link.click();
+    }
+
+    function open_img(el) {
+        console.log(el.currentSrc)
+        window.open(el.currentSrc, "_blank")
+    }
+
+    function do_search() {
+        let v = document.getElementById('query').value;
+        if (!v) return false;
+        if (document.documentURI.includes("/search/")) {
+            window.open('/search/' + v, "_blank")
+            window.close()
+        } else {
+            window.open('/search/' + v, "_blank")
+        }
+    }
+</script>
+<script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script>
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']]
+      },
+      svg: {
+        fontCache: 'global'
+      }
+    };
+</script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<style>
+    * {
+    }
+    p {
+        padding-right: 20px;
+        line-height: 20px;
+        font-size: 14px;
+    }
+    p, a {
+        font-family: sans-serif;
+        text-decoration: none;
+    }
+
+    .mobile p, .mobile a, .mobile li * {
+        font-size: 40px;
+        line-height: 45px;
+    }
+    a {
+        text-decoration: none;
+        font-family: sans-serif;
+    }
+    a:hover {
+        cursor: pointer;
+        text-decoration: underline;
+    }
+    a:active {
+        color: #ffae00;
+    }
+    h1, h2, h3, h4, h5, h6 {
+        margin-bottom: 10px;
+        margin-right: 20px;
+    }
+    hr {
+        display: block;
+        height: 1px;
+        border: 0;
+        margin-right: 20px;
+        color: rgb(236, 236, 236);
+        border-bottom: solid rgb(236, 236, 236) 1px;
+    }
+    h1 {
+        font-weight: normal;
+        font-size: 25px;
+        font-family: unset;
+        border-bottom: solid rgb(236, 236, 236) 1px;
+        padding-bottom: 2px;
+    }
+    .mobile h1, .mobile h1 * {
+        font-size: 60px;
+    }
+    h2, h3 {
+        font-family: sans-serif;
+        border-bottom: unset;
+    }
+    h2 {
+        font-weight: bold;
+        font-size: 18px;
+        color: #212121
+    }
+    .mobile h2, .mobile h2 * {
+        font-size: 50px;
+    }
+    h3 {
+        font-size: 15px;
+        font-weight: normal;
+    }
+    .mobile h3, .mobile h3 * {
+        font-size: 45;
+    }
+    #title-block #title {
+        font-size: 30px;
+        border-bottom: solid rgb(236, 236, 236) 1px;
+        padding-bottom: 3px;
+        margin-bottom: 10px;
+        font-family: unset;
+        margin-right: 20px;
+        line-height: 30px;
+    }
+    #title-block #title a {
+        font-size: 30px;
+        color: #345da1;
+    }
+    #title-block #copyright {
+        font-size: 13px;
+    }
+    .mobile #title-block #title {
+        font-size: 70px;
+        line-height: 80px;
+    }
+    .mobile #title-block #copyright {
+        font-size: 35px;
+    }
+    a {
+        color: #0643a7
+    }
+    pre.prettyprint {
+        padding: 10px;
+        border: none;
+        outline: none;
+        background: rgb(248,249,250);
+        background: linear-gradient(90deg, rgba(248,249,250,1) 0%, rgba(248,249,250,1) 45%, rgba(255,255,255,1) 100%);
+        overflow: scroll;
+        overflow-y: hidden;
+        width: 90%;
+    }
+    .mobile pre.prettyprint {
+        font-size: 40px;
+        padding: 40px;
+    }
+    #nav {
+        float: left;
+        width: 100px;
+        margin-top: 0;
+        height: 100%;
+        padding-top: 14px;
+        text-align: left;
+        border-right: solid rgb(236, 236, 236) 1px;
+        /*
+        background: rgb(246,246,246);
+        background: linear-gradient(180deg, rgba(251,251,251,1) 0%, rgba(252,252,252,1) 63%, rgba(255,255,255,1) 100%);
+        */
+        background: white;
+        z-index: 10;
+        position: sticky;
+        top: 0;
+    }
+    #nav p, #nav a {
+        font-size: 12px;
+        line-height: 20px;
+        margin-left: 20px;
+    }
+    {% if mobile %}
+    #content {
+        padding-top: 10px;
+        padding-right: 10px;
+        margin-left: 50px;
+    }
+    {% else %}
+    #content {
+        padding-top: 10px;
+        margin-left: 120px;
+    }
+    {% endif %}
+    .img {
+        float: right;
+        max-width: 525px;
+        padding: 5px;
+        background: #f8f9fa;
+        border: solid rgb(236, 236, 236) 1px;
+        text-align: left;
+        margin-right: 20px;
+        margin-bottom: 14px;
+        margin-left: 14px;
+    }
+    .img img {
+        background: white;
+        max-height: 300px;
+        max-width: 500px;
+        border: solid rgb(236, 236, 236) 1px;
+        cursor: pointer;
+    }
+    .mobile .img img {
+        min-width: 500px;
+        max-width: 800px;
+    }
+    .img p {
+        margin-bottom: 0;
+        margin-top: 7px;
+    }
+    .mobile img {
+        width: 100%;
+    }
+    ul, ol {
+        padding-left: 10px;
+        font-family: sans-serif;
+        font-size: 14px;
+    }
+    .mobile ul, .mobile ol {
+        font-size: 40px;
+        padding-left: 30px;
+    }
+    ol {
+        counter-reset: item;
+        list-style-type: none;
+    }
+    ol li {
+        display: block;
+        font-size: 14px;
+    }
+    .mobile ol li {
+        font-size: 40px;
+        padding-bottom: 20px
+    }
+    ul li {
+        margin-left: 10px;
+        padding-top: 5px;
+        padding-bottom: 5px;
+    }
+    ol li:before {
+        content: counter(item) " ";
+        counter-increment: item;
+    }
+    #contents {
+        padding-top: 1px;
+        padding-bottom: 1px;
+        width: 200px;
+        background: #f6f6f6;
+        border: solid rgb(236, 236, 236) 1px;
+        text-align: center;
+        border-radius: 2%;
+    }
+    #contents div {
+        padding-left: 10px;
+        text-align: left;
+    }
+    .mobile #contents {
+        width: 95%;
+    }
+    table, tr, td, th {
+        border: solid rgb(236, 236, 236) 1px;
+        border-collapse: collapse;
+        padding: 10px;
+        font-size: 14px;
+    }
+    table {
+        min-width: 130px;
+        background: #f8f9fa;
+    }
+    .mobile table {
+        min-width: 500px;
+    }
+    .mobile table, .mobile tr, .mobile td {
+        font-size: 40px;
+        padding: 40px;
+    }
+    #nav input[type="text"]#query {
+        border: solid rgb(236, 236, 236) 1px;
+        width: 80px;
+    }
+    details[open] div {
+        margin-left: 20px;
+    }
+    details {
+        border-left: solid #0643a7 1px;
+    }
+    details[open] summary {
+        margin-left: 0;
+    }
+    details summary {
+        margin-left: 0;
+        font-family: sans-serif;
+        cursor: pointer;
+        color: #0643a7;
+        padding-top: 5px;
+        padding-bottom: 5px;
+        padding-left: 10px;
+    }
+    .mobile details summary {
+        font-size: 40px;
+    }
+    .mobile details {
+        padding-left: 20px;
+    }
+    details summary:active {
+        color: #ffae00;
+    }
+    span.mono {
+        font-family: monospace;
+    }
+    input:focus {
+        outline: none;
+    }
+    #tags {
+        margin-top: 30px
+    }
+    #tags, #tags div.tags-tag span {
+        color: rgb(236, 236, 236);
+        font-family: monospace;
+    }
+    .tags-tag {
+        border: solid rgb(236, 236, 236) 1px;
+        padding: 2px;
+        border-radius: 5px;
+    }
+    .mobile #tags {
+        margin-top: 50px;
+        font-size: 30px;
+    }
+    input.biginput  {
+        width: 500px;
+        height: 50px;
+        font-size: 40px;
+        outline: none;
+        border: none;
+        background: rgb(248,249,250);
+        background: linear-gradient(90deg, rgba(248,249,250,1) 0%, rgba(248,249,250,1) 45%, rgba(255,255,255,1) 100%);
+        padding: 10px 10px 15px 20px;
+    }
+    span.code {
+        background: #f8f9fa;
+        border: 1px #f6f6f6 solid;
+        border-radius: 10%;
+        padding: 3px;
+        font-size: 0.9em;
+        font-family: menlo;
+    }
+    pre .nocode { background-color: none; color: #000 }
+    pre .str { color: blue } /* string  - pink */
+    pre .kwd { color: rgb(0, 0, 136);; font-weight: bold }
+    pre .com { color: #646464 } /* comment - skyblue */
+    pre .typ { color: black } /* type    - lightgreen */
+    pre .lit { color: #5D1000 } /* literal - darkred */
+    pre .pun { color: black }    /* punctuation */
+    pre .pln { color: #212121 }    /* plaintext */
+    pre .tag { color: black; font-weight: bold } /* html/xml tag    - lightyellow */
+    pre .atn { color: black; font-weight: bold } /* attribute name  - khaki */
+    pre .atv { color: black } /* attribute value - pink */
+    pre .dec { color: #5D1000 } /* decimal         - lightgreen */
+
+    /* Specify class=linenums on a pre to get line numbering */
+    ol.linenums { margin-top: 0; margin-bottom: 0; color: #AEAEAE } /* IE indents via margin-left */
+    li.L0,li.L1,li.L2,li.L3,li.L5,li.L6,li.L7,li.L8 { list-style-type: none }
+    /* Alternate shading for lines */
+    li.L1,li.L3,li.L5,li.L7,li.L9 { }
+
+    @media print {
+    pre.prettyprint { background-color: none }
+    pre .str, code .str { color: #060 }
+    pre .kwd, code .kwd { color: #006; font-weight: bold }
+    pre .com, code .com { color: #600; font-style: italic }
+    pre .typ, code .typ { color: #404; font-weight: bold }
+    pre .lit, code .lit { color: #044 }
+    pre .pun, code .pun { color: #440 }
+    pre .pln, code .pln { color: #000 }
+    pre .tag, code .tag { color: #006; font-weight: bold }
+    pre .atn, code .atn { color: #404 }
+    pre .atv, code .atv { color: #060 }
+    }
+    .hovercolor:hover {
+        filter: saturate(300%);
+    }
+    .hovercolor:active {
+        filter: saturate(500%);
+    }
+</style>
+<head>
+    <title>{{article.title}} — {{config["name"]}}</title>
+</head>
+<body style="padding-top: 1px; margin: 0" class="{% if mobile %}mobile{%endif%}">
+{% if not mobile %}
+<div id="nav">
+    <p style="font-family: menlo; font-size: 1.3em; margin-bottom: 20px; margin-top: 10px; line-height: 20px">
+        <a href="/" style="margin-left: 0" class="hovercolor"><img src="/static/.svg" width="60px"></a>
+    </p>
+    <a href="/">Main page</a><br>
+    <a href="/random" title="Go to (absolutely) random article on wiki">Random</a><br>
+    <a href="/wiki/all" title="See the list of all articles">All articles</a><br>
+    <a href="/wiki/found_mistake" title="Click if you have found a mistake here">A mistake?</a>
+    <p></p>
+    <div style="text-align: center; border-top: solid rgb(236, 236, 236) 1px; border-bottom: solid rgb(236, 236, 236) 1px; padding-top: 10px; padding-bottom: 10px;">
+        <form onsubmit="do_search()" autocomplete="off" style="margin: 0">
+            <input type="text" placeholder="Enter query" id="query" style="padding-left: 9px">
+            <a onclick="do_search()" style="margin: 0; padding: 0">[Search]</a>
+        </form>
+    </div>
+    <p></p>
+    {% for name, link in config["links"].items() %}
+    <a href="{{link.href}}" target="_blank" title="{{link.alt}}">{{ name }}</a>
+    {% endfor %}
+</div>
+{% else %}
+<div style="
+height: 150px;
+width: 100%;
+">
+<table style="
+background: white;
+margin: 0;
+width: 100%;
+">
+    <tr>
+        <td>
+            <a href="/" style="margin-left: 0" class="hovercolor"><img src="/static/.svg" width="60px"></a>
+        </td>
+        <td onclick="this.getElementsByTagName('a')[0].click()">
+            <a href="/">Main page</a>
+        </td>
+        <td onclick="this.getElementsByTagName('a')[0].click()">
+            <a href="/random">Random</a>
+        </td>
+        <td onclick="this.getElementsByTagName('a')[0].click()">
+            <a href="/wiki/all">All topics</a>
+        </td>
+        <td onclick="this.getElementsByTagName('a')[0].click()">
+            <a href="/wiki/found_mistake">A mistake?</a>
+        </td>
+    </tr>
+</table>
+</div>
+<br><br>
+{% endif %}
+<div id="content">
+    <div id="title-block">
+        <p id="title">{{article.title}}</p>
+        {% if title == "Undefined" %}
+        <p id="copyright">Sorry, this page is undefined</p>
+        {% elif title == "Invalid password" %}
+        <p id="copyright">Password is invalid</p>
+        {% endif %}
+    </div>
+    <div id="content-block">
+        <p>{{article.preambula|safe}}</p>
+        <div id="contents"></div>
+        <p>{{article.contents|safe}}</p>
+    </div>
+    {% if tags and tags[0] %}
+    <div id="tags">
+        Tags:
+        {% for tag in article.tags %}
+        <span class="tags-tag">{{tag}}</span>{% if loop.index != article.tags|length %},{% endif %}
+        {% endfor %}
+    </div>
+    {% endif %}
+    <p style="color: gray">({{config["name"].lower()}} documentation (c) {{config["author"]}})</p>
+    {% if mobile %}
+    <div>
+        <div style="text-align: center; border-top: solid rgb(236, 236, 236) 1px; border-bottom: solid rgb(236, 236, 236) 1px; padding-top: 10px; padding-bottom: 30px;">
+            <p style="color: gray">You can search here:</p>
+            <form onsubmit="do_search()" autocomplete="off" style="margin: 0">
+                <input type="text" placeholder="Enter query" id="query" style="width: 500px; height: 100px; font-size: 50px;">
+                <a onclick="do_search()" style="margin: 0; margin-left: 50px; padding: 0">[Search]</a>
+            </form>
+        </div>
+    </div>
+    {% endif %}
+</div>
+<div style="height: 50px"></div>
+</body>
+<script>
+    let contents_el = document.getElementById("contents")
+    if (contents_el) {
+
+        let div = document.createElement("div")
+        div.id = "contents-list"
+
+        let p = document.createElement("p")
+        p.style.fontWeight = "bold"
+        p.textContent = "Contents "
+
+        let span = document.createElement("span")
+        span.innerHTML = "["
+        span.style.fontWeight = "normal"
+
+        let hide = document.createElement("a")
+        hide.textContent = "hide"
+        hide.id = "toggle-contents"
+        hide.onclick = function () {
+            if (hide.textContent === "hide") {
+                hide.textContent = "show"
+                div.hidden = true
+            } else {
+                hide.textContent = "hide"
+                div.hidden = false
+            }
+        }
+
+        span.appendChild(hide)
+        let span2 = document.createElement("span")
+        span2.innerText = "]"
+        span.appendChild(span2)
+
+        p.appendChild(span)
+
+        let ul = document.createElement("ol")
+
+        let articles = document.getElementsByClassName("article")
+        for (let i = 0; i < articles.length; i++) {
+            let article = articles.item(i)
+            let anchor = article.getElementsByTagName("a").item(0).name;
+            let li = document.createElement("li")
+            let a = document.createElement("a")
+            a.href = "#" + anchor;
+            a.title = title + " - " + article.getElementsByTagName("span")[0].textContent;
+            console.log(a.href)
+            a.textContent = article.getElementsByTagName("span")[0].textContent;
+            li.appendChild(a)
+            ul.appendChild(li)
+        }
+
+        div.appendChild(ul)
+        contents_el.appendChild(p)
+        contents_el.appendChild(div)
+
+        if (ul.children.length < 2) {
+            contents_el.remove()
+        }
+    }
+</script>
+</html>

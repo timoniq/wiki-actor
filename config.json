@@ -1,0 +1,18 @@
+{
+  "name": "Laurelang",
+  "links": {
+    "Repository": {
+      "alt": "Go to main repository",
+      "href": "https://github.com/timoniq/laurelang"
+    },
+    "Contact": {
+      "alt": "Send email to laurelang maintainer",
+      "href": "mailto:timoniq@laurelang.org"
+    },
+    "Telegram": {
+      "alt": "Join telegram channel to receive updates",
+      "href": "https://t.me/laurelang_clg"
+    }
+  },
+  "author": "Arseny Kriuchkov"
+}

@@ -1,0 +1,33 @@
+Welcome to wiki actor
+*---*
+Wiki actor is easily embedded into [actor environment](https://github.com/timoniq/actor)
+*---*
+# How to make articles
+
+Go to `docs/articles` folder. Add articles following the [style guide](#Style%20guide).
+
+Generate articles:
+
+```
+python3 generate.py
+```
+
+# Style guide
+
+Make three sections with a separator declared in `generate.py`. Article should consist of three sections:
+
+* Name
+
+* Preambula
+
+* Content
+
+Use simple markdown in Preambula and Content section.
+
+You can embed latex wrapping it into `$`:
+
+```
+$f(x) = \int_{0}^{x} g(x)$
+```
+
+$f(x) = \int_{0}^{x} g(x)$
