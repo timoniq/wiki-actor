@@ -19,14 +19,14 @@ import json
 SEARCH_PATH = re.compile(r"/search/(.+)")
 SUBARTICLE = re.compile(r"\.article$")
 
-with open("config.json") as config_file:
-    config = json.load(config_file)
-
 
 class Handler(AutoHandler):
     def __init__(self):
         self.factory = HTMLResponseFactory([Handler.getpath("templates")])
         snippets.getpath = self.getpath
+
+        with open(Handler.getpath("config.json")) as config_file:
+            self.config = json.load(config_file)
 
     @regex_path("^/$")
     @resolve_mobile
@@ -43,7 +43,7 @@ class Handler(AutoHandler):
 
         response.body = template.render(
             get_articles=all_articles, article=Article("Search results", [], "", "", {}),
-            config=config
+            config=self.config
         ).encode("utf-8")
         return response
 
