@@ -14,9 +14,13 @@ from actor import (
 from response import ArticleResponse, Article, gen_search_response
 from snippets import all_articles
 import snippets
+import json
 
 SEARCH_PATH = re.compile(r"/search/(.+)")
 SUBARTICLE = re.compile(r"\.article$")
+
+with open("config.json") as config_file:
+    config = json.load(config_file)
 
 
 class Handler(AutoHandler):
@@ -38,7 +42,8 @@ class Handler(AutoHandler):
         )
 
         response.body = template.render(
-            get_articles=all_articles, article=Article("Search results", [], "", "", {})
+            get_articles=all_articles, article=Article("Search results", [], "", "", {}),
+            config=config
         ).encode("utf-8")
         return response
 
