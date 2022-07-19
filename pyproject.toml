@@ -8,7 +8,7 @@ authors = ["timoniq"]
 python = "^3.8"
 markdown2 = "^2.4.3"
 Jinja2 = "^3.1.2"
-uvicorn-actor = "^0.1.0"
+uvicorn-actor = "^0.1.2"
 
 [tool.poetry.dev-dependencies]
 

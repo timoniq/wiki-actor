@@ -1,0 +1,73 @@
+<html>
+<style>
+    #header {
+        padding: 20px;
+        text-align: center;
+    }
+    #footer {
+        padding-left: 20px;
+    }
+    h1, h2, h3, p, a {
+        font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+        margin-bottom: 10px;
+        margin-top: 10px;
+    }
+    table {
+        display: block;
+        width: 100%;
+    }
+    td {
+        padding: 10px;
+    }
+    textarea {
+        resize: none;
+        height: 500px;
+        background: #fcfcfc;
+        font-size: 1.1em;
+        border: 1px solid #dedede;
+        outline: none;
+        border-radius: 5px;
+        padding: 20px;
+    }
+    iframe {
+        border: none;
+        outline: none;
+        border: 1px solid #dedede;
+    }
+    a {
+        text-decoration: none;
+        color: rgb(59, 59, 236);
+        cursor: pointer;
+    }
+</style>
+<script>
+    function send_and_update() {
+        let http = new XMLHttpRequest();
+        http.open('POST', '/editor/{{uu}}/update', true);
+        http.onload = function () {
+            document.getElementById('showcast').contentWindow.location.reload();
+        }
+        http.send(document.getElementById('article').value);
+    }
+</script>
+<body>
+    <header>
+        <title>Editor | {{uu}}</title>
+    </header>
+    <div id="header">
+        <h1>Article Editor (<a href="/">{{config["name"]}}</a>)</h1>
+        <p>{{uu}}, <a href="/editor/{{uu}}">[open my article]</a></p>
+    </div>
+    <table>
+        <tr>
+            <td style="width: 40%">
+                <textarea style="width: 100%" id="article" onchange="send_and_update()">
+{{contents}}</textarea>
+            </td>
+            <td style="width: 60%">
+                <iframe src="/editor/{{uu}}" width="100%" height="500px" id="showcast"></iframe>
+            </td>
+        </tr>
+    </table>
+</body>
+</html>

@@ -92,7 +92,7 @@ standard = ["websockets (>=10.0)", "httptools (>=0.4.0)", "watchgod (>=0.6)", "p
 
 [[package]]
 name = "uvicorn-actor"
-version = "0.1.1"
+version = "0.1.2"
 description = ""
 category = "main"
 optional = false
@@ -183,7 +183,4 @@ uvicorn = [
     {file = "uvicorn-0.17.6-py3-none-any.whl", hash = "sha256:19e2a0e96c9ac5581c01eb1a79a7d2f72bb479691acd2b8921fce48ed5b961a6"},
     {file = "uvicorn-0.17.6.tar.gz", hash = "sha256:5180f9d059611747d841a4a4c4ab675edf54c8489e97f96d0583ee90ac3bfc23"},
 ]
-uvicorn-actor = [
-    {file = "uvicorn-actor-0.1.1.tar.gz", hash = "sha256:0586d5f4cad880330a1de04d6dec348278c93426fce4a92bdc81c4d348cbf4f1"},
-    {file = "uvicorn_actor-0.1.1-py3-none-any.whl", hash = "sha256:6cdd7bec6561dae1b791a15be624e8bd139cac4d9eede1e57228b61176b2d4d7"},
-]
+uvicorn-actor = []
